@@ -6,20 +6,40 @@
     <title>Login dinamico</title>
   </head>
   <body>
-    <h1>Form login</h1>
-    <form id="loginForm">
-      <label for="username">Username:</label><br>
-      <input type="text" id="username" required><br><br>
-      <button type="submit">Accedi</button>
-    </form>
+    <div id="loginSection">
+        <h1>Form login</h1>
+        <form id="loginForm">
+          <label for="username">Username:</label><br>
+          <input type="text" id="username" required autocomplete="off"><br><br>
+          <button type="submit">Accedi</button>
+        </form>
+    </div>
 
-    <h3 id="messaggioBenvenuto"></h3>
+    <div id="sezioneBenvenuto" style="display: none;">
+      <h3 id="messaggioBenvenuto"></h3>   
+      <button id="logoutBtn">Esci / Nuovo Login</button>
+    </div>
 
     <script>
-      document.getElementById("loginForm").addEventListener("submit", function(e) {
+      const loginForm = document.getElementById('loginForm');
+      const usernameInput = document.getElementById('username');
+      const loginSection = document.getElementById('loginSection');
+      const welcomeSection = document.getElementById('sezioneBenvenuto');
+      const welcomeMessage = document.getElementById('messaggioBenvenuto');
+      const logoutBtn = document.getElementById('logoutBtn');
+      
+      loginForm.addEventListener('submit', function(e) {
         e.preventDefault();
-        const user = document.getElementById("username").value;
-        document.getElementById("messaggioBenvenuto").innerText = "Benvenuto, " + user;
+        const user = usernameInput.value;
+        welcomeMessage.innerText = 'Benvenuto, ' + user + '!';
+        loginSection.style.display = 'none';
+        welcomeSection.style.display = 'block';
+        usernameInput.value = '';
+      });
+
+      logoutBtn.addEventListener('click', function() {
+        welcomeSection.style.display = 'none';
+        loginSection.style.display = 'block';
       });
     </script>
   </body>
