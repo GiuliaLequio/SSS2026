@@ -1,0 +1,27 @@
+pipeline {
+  agent any
+
+  stages {
+    stage('Checkout') {
+      steps {
+        checkout scm
+      }
+    }
+
+    stage('Build FE') {
+      steps {
+        dir('4-esercitazioneDockerCompose/frontend') {
+          sh 'docker build -t fe -f Dockerfile .'
+        }
+      }
+    }
+
+    stage('Build BE') {
+      steps {
+        dir('4-esercitazioneDockerCompose/backend') {
+          sh 'docker build -t be -f Dockerfile .'
+        }
+      }
+    }
+  }
+}
