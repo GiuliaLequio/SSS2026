@@ -10,13 +10,13 @@ pipeline {
 
     stage('Build FE') {
       steps {
-        sh 'docker build -t fe:${BUILD_NUMBER} -f 5-esercitazioneJenkins/frontend/Dockerfile 5-esercitazioneJenkins/frontend'
+        sh 'docker build -t fe:${BUILD_NUMBER} -f 4-esercitazioneDockerCompose/frontend/Dockerfile 4-esercitazioneDockerCompose/frontend'
       }
     }
 
     stage('Build BE') {
       steps {
-        sh 'docker build -t be:${BUILD_NUMBER} -f 5-esercitazioneJenkins/backend/Dockerfile 5-esercitazioneJenkins/backend'
+        sh 'docker build -t be:${BUILD_NUMBER} -f 4-esercitazioneDockerCompose/backend/Dockerfile 4-esercitazioneDockerCompose/backend'
       }
     }
   }
